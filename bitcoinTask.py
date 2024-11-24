@@ -26,7 +26,6 @@ TIMEZONE = "Asia/Jerusalem"  # Your local timezone
 COINDESK_API = "https://api.coindesk.com/v1/bpi/currentprice.json"
 
 # Logger definition
-
 logging.basicConfig(filename=LOG_FILE_NAME,
                     level=logging.INFO,
                     format="%(asctime)s | %(levelname)-5s | %(funcName)-15s | %(message)s")
@@ -110,7 +109,7 @@ def convert_utc_to_timezone(utc_time_str, target_timezone):
 #    target_timezone (str): Time zone for data conversion.
 #    url (str): API endpoint to fetch price data.
 # Returns:
-#    list: List of dictionaries with 'time' (localized) and 'price' or None on failure.
+#    list: List of dictionaries with 'time' (localized) and 'price'. None on failure.
 def collect_data(sleet_in_min, run_time_min, target_timezone, url):
     try:
         data = []
@@ -157,7 +156,7 @@ def collect_data(sleet_in_min, run_time_min, target_timezone, url):
 #    Ture on printing success, None on failure.
 def graph_plot(times, prices, total_run_time_min, png_file_name, write_price_values=False, add_mean_std=False):
     try:
-        # change log level to disable unwanted log messages
+        # change log level to disable unwanted matplotlib log messages
         plt.set_loglevel('WARNING')
 
         # Find the lowest and highest prices and their indices
@@ -225,13 +224,13 @@ def main():
     coin_desk_api =  COINDESK_API
     json_file_name = JSON_FILE_NAME
     graph_file_name = GRAPH_FILE_NAME
-    timezone = TIMEZONE #your local timezone (json and graph timing adjustment)
+    timezone = TIMEZONE #your local timezone (effects json timing and graph x-axis)
 
     # scanning parameters:
     total_run_time_min = TOTAL_RUN_TIME_MIN
     sampling_time_min = SAMPLING_TIME_MIN
 
-    # Collect data for an hour, sample every minute
+    # Collect data into a list.
     data = collect_data(run_time_min=total_run_time_min,
                         sleet_in_min=sampling_time_min,
                         target_timezone=timezone,

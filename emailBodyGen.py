@@ -7,7 +7,7 @@
 #    prices (list): List of Bitcoin prices recorded during the period.
 # Returns:
 #    str: HTML formatted email body with price analysis summary.
-def get_email_body(totalRunTimeMin, times, prices):
+def get_email_body(total_run_time_min, times, prices):
     import numpy as np
 
     # calculations for e-mail summary
@@ -19,7 +19,7 @@ def get_email_body(totalRunTimeMin, times, prices):
     return f"""
     <html>
     <body>
-        <p>Here is the Bitcoin price analysis for the last {totalRunTimeMin} minutes, :</p>
+        <p>Here is the Bitcoin price analysis for the last {total_run_time_min} minutes, :</p>
         <table border="1" cellpadding="5" cellspacing="0">
             <tr><th>Metric</th><th>Value</th></tr>
             <tr><td>Maximum Price</td><td>{round(max_price, 2):,} USD</td></tr>
