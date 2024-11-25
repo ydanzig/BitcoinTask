@@ -123,7 +123,7 @@ def collect_data(sleet_in_min, run_time_min, target_timezone, url):
             time_left = total_time - time_passed
 
             # Print the time remaining, overwriting the line
-            print(f"\rTime remaining for scan: {time_left/60:,.2f} minutes", end="", flush=True)
+            print(f"\rTime remaining for scan: {time_left/60:,.0f} minutes", end="", flush=True)
 
             # Fetch and process data
             result = fetch_bpi(url)
